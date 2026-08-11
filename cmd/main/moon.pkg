@@ -1,0 +1,5 @@
+import {
+  "Derk2006/sarifkit",
+}
+
+pkgtype(kind: "executable")
