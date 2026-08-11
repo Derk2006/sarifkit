@@ -1,0 +1,16 @@
+{
+  "name": "Derk2006/sarifkit",
+  "version": "0.1.0",
+  "readme": "README.md",
+  "repository": "https://github.com/Derk2006/sarifkit.git",
+  "license": "MIT",
+  "keywords": [
+    "sarif",
+    "static-analysis",
+    "diagnostics",
+    "ci",
+    "security"
+  ],
+  "preferred-target": "wasm",
+  "description": "Pure MoonBit SARIF 2.1.0 report builder, validator and merger"
+}
