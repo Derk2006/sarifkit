@@ -1,5 +1,23 @@
 # 版本发布记录
 
+## 0.1.1
+
+发布日期：2026-08-17
+
+发布目标：
+
+- 发布 `Derk2006/sarifkit@0.1.1`。
+- 同步最终验收口径的 README、申报书、测试记录、工作记录和非重复调研说明。
+- 保持 MoonBit 原生 SARIF 2.1.0 报告构造、校验、合并、baseline 和 annotation 能力稳定可用。
+
+发布前检查：
+
+- 有效 MoonBit 代码行数为 4408 行。
+- Git 提交记录已超过 5 次，每次提交对应真实功能或工程材料。
+- `moon check`、`moon build`、`moon test`、`moon run cmd/main`、`moon package` 已验证通过。
+- Mooncakes 方向已完成非重复调研。
+- 项目使用 MIT 许可证。
+
 ## 0.1.0
 
 发布日期：2026-08-11

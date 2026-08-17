@@ -7,7 +7,7 @@ SARIF 是 GitHub Code Scanning、静态分析器和安全工具常用的交换�
 ## 安装
 
 ```bash
-moon add Derk2006/sarifkit@0.1.0
+moon add Derk2006/sarifkit@0.1.1
 ```
 
 Mooncakes 包名：
