@@ -47,4 +47,4 @@
 
 ## Mooncakes 非重复说明
 
-在 Mooncakes 上检索 `sarif`、`code scanning`、`static analysis`、`diagnostic report`、`annotations` 等关键词，未发现功能高度重合的 SARIF 报告构造、校验与合并库。本项目方向具备独立性和生态补位价值。
+在 Mooncakes 上检索 `sarif`、`code scanning`、`static analysis`、`diagnostic report`、`annotations` 等关键词，已发现 SARIF 静态类型和具体工具的 SARIF 输出能力，但未发现以 SARIF 报告构造、轻量解析、校验策略、统计、筛选、合并、baseline、GitHub annotation、规则模板目录和字段目录为完整边界的通用 MoonBit 工具库。本项目方向具备独立性和生态补位价值。

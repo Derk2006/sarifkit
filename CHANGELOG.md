@@ -9,3 +9,4 @@
 - 实现 GitHub workflow annotation 转换。
 - 增加 50 条可复用规则模板和 135 条 SARIF 字段描述。
 - 添加单元测试、示例入口、README、CI、设计说明、申报书和发布记录。
+- 复核并补充 Mooncakes 非重复调研说明。
