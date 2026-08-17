@@ -55,14 +55,7 @@ pub fn Region::Region(
   char_offset? : Int,
   char_length? : Int,
 ) -> Region {
-  {
-    start_line,
-    start_column,
-    end_line,
-    end_column,
-    char_offset,
-    char_length,
-  }
+  { start_line, start_column, end_line, end_column, char_offset, char_length }
 }
 
 ///|
@@ -71,7 +64,7 @@ pub fn Region::single_line(
   start_column : Int,
   end_column : Int,
 ) -> Region {
-  Region::Region(line, start_column~, end_line=line, end_column=end_column)
+  Region::Region(line, start_column~, end_line=line, end_column~)
 }
 
 ///|
@@ -201,8 +194,12 @@ pub fn SarifRule::SarifRule(
   {
     id: id.to_owned(),
     name,
-    short_description: short_description.map(text => SarifMessage::SarifMessage(text)),
-    full_description: full_description.map(text => SarifMessage::SarifMessage(text)),
+    short_description: short_description.map(text => {
+      SarifMessage::SarifMessage(text)
+    }),
+    full_description: full_description.map(text => {
+      SarifMessage::SarifMessage(text)
+    }),
     default_level,
     help_uri,
     tags: tags.to_owned(),
@@ -224,12 +221,7 @@ pub fn ToolDriver::ToolDriver(
   information_uri? : String,
   rules? : ArrayView[SarifRule] = [],
 ) -> ToolDriver {
-  {
-    name: name.to_owned(),
-    version,
-    information_uri,
-    rules: rules.to_owned(),
-  }
+  { name: name.to_owned(), version, information_uri, rules: rules.to_owned() }
 }
 
 ///|
@@ -239,7 +231,10 @@ pub struct Fingerprint {
 } derive(Eq, Debug, ToJson)
 
 ///|
-pub fn Fingerprint::Fingerprint(key : StringView, value : StringView) -> Fingerprint {
+pub fn Fingerprint::Fingerprint(
+  key : StringView,
+  value : StringView,
+) -> Fingerprint {
   { key: key.to_owned(), value: value.to_owned() }
 }
 

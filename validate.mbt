@@ -85,7 +85,9 @@ fn validate_region(
   }
   if region.end_line is Some(end_line) {
     if end_line < region.start_line {
-      push_error(out, "region.endLine", path, "endLine must not precede startLine")
+      push_error(
+        out, "region.endLine", path, "endLine must not precede startLine",
+      )
     }
   }
   if region.end_column is Some(end_column) {
@@ -95,12 +97,16 @@ fn validate_region(
   }
   if region.char_offset is Some(offset) {
     if offset < 0 {
-      push_error(out, "region.charOffset", path, "charOffset must be non-negative")
+      push_error(
+        out, "region.charOffset", path, "charOffset must be non-negative",
+      )
     }
   }
   if region.char_length is Some(length) {
     if length < 0 {
-      push_error(out, "region.charLength", path, "charLength must be non-negative")
+      push_error(
+        out, "region.charLength", path, "charLength must be non-negative",
+      )
     }
   }
 }
@@ -115,10 +121,14 @@ fn validate_location(
 ) -> Unit {
   let uri = location.physical_location.artifact_location.uri
   if is_blank(uri) {
-    push_error(out, "location.uri", path, "artifactLocation.uri must be non-empty")
+    push_error(
+      out, "location.uri", path, "artifactLocation.uri must be non-empty",
+    )
   }
   if policy.require_artifacts_for_locations && !artifact_exists(artifacts, uri) {
-    push_warning(out, "location.artifact", path, "location uri is not listed in artifacts")
+    push_warning(
+      out, "location.artifact", path, "location uri is not listed in artifacts",
+    )
   }
   if location.physical_location.region is Some(region) {
     validate_region(region, "\{path}.physicalLocation.region", out)
@@ -135,7 +145,9 @@ fn validate_rule(
     push_error(out, "rule.id", path, "rule id must be non-empty")
   }
   if !is_known_level(rule.default_level) {
-    push_warning(out, "rule.level", path, "rule default level is not a standard SARIF level")
+    push_warning(
+      out, "rule.level", path, "rule default level is not a standard SARIF level",
+    )
   }
   if rule.tags.length() == 0 {
     push_warning(out, "rule.tags", path, "rule has no tags")
@@ -153,27 +165,42 @@ fn validate_result(
   if is_blank(result.rule_id) {
     push_error(out, "result.ruleId", path, "result ruleId must be non-empty")
   }
-  if policy.require_declared_rules && !rule_exists(run.tool.rules, result.rule_id) {
-    push_warning(out, "result.ruleId", path, "result references an undeclared rule")
+  if policy.require_declared_rules &&
+    !rule_exists(run.tool.rules, result.rule_id) {
+    push_warning(
+      out, "result.ruleId", path, "result references an undeclared rule",
+    )
   }
   if !is_known_level(result.level) {
-    push_warning(out, "result.level", path, "result level is not a standard SARIF level")
+    push_warning(
+      out, "result.level", path, "result level is not a standard SARIF level",
+    )
   }
   if !is_known_kind(result.kind) {
-    push_warning(out, "result.kind", path, "result kind is not a standard SARIF kind")
+    push_warning(
+      out, "result.kind", path, "result kind is not a standard SARIF kind",
+    )
   }
   if is_blank(result.message.text) {
-    push_error(out, "result.message", path, "result message text must be non-empty")
+    push_error(
+      out, "result.message", path, "result message text must be non-empty",
+    )
   }
   if policy.require_results_have_locations && result.locations.length() == 0 {
-    push_warning(out, "result.locations", path, "result has no physical location")
+    push_warning(
+      out, "result.locations", path, "result has no physical location",
+    )
   }
   if !level_at_least(result.level, policy.min_level) {
-    push_warning(out, "result.level.min", path, "result is below the configured minimum level")
+    push_warning(
+      out, "result.level.min", path, "result is below the configured minimum level",
+    )
   }
   if result.baseline_state is Some(state) {
     if !is_known_baseline_state(state) {
-      push_warning(out, "result.baselineState", path, "baselineState is not a standard SARIF value")
+      push_warning(
+        out, "result.baselineState", path, "baselineState is not a standard SARIF value",
+      )
     }
   }
   for i, location in result.locations {
@@ -194,17 +221,23 @@ pub fn SarifRun::validate_with_policy(
 ) -> Array[SarifDiagnostic] {
   let out : Array[SarifDiagnostic] = []
   if is_blank(self.tool.name) {
-    push_error(out, "tool.driver.name", "tool.driver", "tool driver name must be non-empty")
+    push_error(
+      out, "tool.driver.name", "tool.driver", "tool driver name must be non-empty",
+    )
   }
   if self.tool.rules.length() == 0 {
-    push_warning(out, "tool.rules", "tool.driver.rules", "tool declares no rules")
+    push_warning(
+      out, "tool.rules", "tool.driver.rules", "tool declares no rules",
+    )
   }
   for i, rule in self.tool.rules {
     validate_rule(rule, "tool.driver.rules[\{i}]", out)
   }
   if policy.max_results_per_run is Some(max) {
     if self.results.length() > max {
-      push_warning(out, "run.results.max", "results", "run exceeds configured result limit")
+      push_warning(
+        out, "run.results.max", "results", "run exceeds configured result limit",
+      )
     }
   }
   for i, result in self.results {
@@ -228,7 +261,9 @@ pub fn SarifLog::validate_with_policy(
     push_error(out, "log.version", "version", "SARIF version must be 2.1.0")
   }
   if self.runs.length() == 0 {
-    push_error(out, "log.runs", "runs", "SARIF log must contain at least one run")
+    push_error(
+      out, "log.runs", "runs", "SARIF log must contain at least one run",
+    )
   }
   for i, run in self.runs {
     for diag in run.validate_with_policy(policy) {

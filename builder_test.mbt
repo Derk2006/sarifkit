@@ -4,8 +4,16 @@ test "builder deduplicates rules and artifacts while adding results" {
     "moonlint",
     tool_version="0.1.0",
   )
-  let first = builder.add_rule("MB001", name="no-debug", default_level="warning")
-  let again = builder.add_rule("MB001", name="no-debug", default_level="warning")
+  let first = builder.add_rule(
+    "MB001",
+    name="no-debug",
+    default_level="warning",
+  )
+  let again = builder.add_rule(
+    "MB001",
+    name="no-debug",
+    default_level="warning",
+  )
   @test.assert_eq(first, again)
   builder.add_result(
     "MB001",
@@ -13,14 +21,16 @@ test "builder deduplicates rules and artifacts while adding results" {
     uri="src/main.mbt",
     line=10,
     column=2,
-  ) |> ignore
+  )
+  |> ignore
   builder.add_result(
     "MB001",
     "second debug print",
     uri="src/main.mbt",
     line=12,
     column=2,
-  ) |> ignore
+  )
+  |> ignore
   @test.assert_eq(builder.rule_count(), 1)
   @test.assert_eq(builder.artifact_count(), 1)
   @test.assert_eq(builder.result_count(), 2)

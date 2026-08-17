@@ -1,3 +1,4 @@
+///|
 fn main {
   let builder = @sarifkit.SarifBuilder::SarifBuilder(
     "moonlint",
@@ -10,14 +11,16 @@ fn main {
     short_description="Debug print should not be committed",
     default_level="warning",
     tags=["maintainability", "ci"],
-  ) |> ignore
+  )
+  |> ignore
   builder.add_fingerprinted_result(
     "MB001",
     "debug print should be removed before release",
     "src/main.mbt",
     12,
     column=3,
-  ) |> ignore
+  )
+  |> ignore
   let log = builder.log()
   println(log.summary())
   println(log.github_annotation_commands()[0])

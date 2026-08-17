@@ -1,4 +1,4 @@
-﻿///|
+///|
 /// SARIF schema field descriptors used by documentation, validation reports
 /// and tool UIs that need to explain which part of a SARIF log is being
 /// inspected. This is a compact MoonBit-native reference table, not a full
@@ -10,6 +10,7 @@ pub struct SarifFieldDescriptor {
   value_kind : String
   note : String
 } derive(Eq, Debug, ToJson)
+
 ///|
 pub fn SarifFieldDescriptor::SarifFieldDescriptor(
   object_name : StringView,
@@ -18,8 +19,15 @@ pub fn SarifFieldDescriptor::SarifFieldDescriptor(
   value_kind? : String = "string",
   note? : String = "",
 ) -> SarifFieldDescriptor {
-  { object_name: object_name.to_owned(), field_name: field_name.to_owned(), required, value_kind, note }
+  {
+    object_name: object_name.to_owned(),
+    field_name: field_name.to_owned(),
+    required,
+    value_kind,
+    note,
+  }
 }
+
 ///|
 pub fn schema_field_001() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -30,6 +38,7 @@ pub fn schema_field_001() -> SarifFieldDescriptor {
     note="log.version is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_002() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -40,6 +49,7 @@ pub fn schema_field_002() -> SarifFieldDescriptor {
     note="log.schema is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_003() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -50,6 +60,7 @@ pub fn schema_field_003() -> SarifFieldDescriptor {
     note="log.runs is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_004() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -60,6 +71,7 @@ pub fn schema_field_004() -> SarifFieldDescriptor {
     note="log.tool is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_005() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -70,6 +82,7 @@ pub fn schema_field_005() -> SarifFieldDescriptor {
     note="log.results is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_006() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -80,6 +93,7 @@ pub fn schema_field_006() -> SarifFieldDescriptor {
     note="log.artifacts is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_007() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -90,6 +104,7 @@ pub fn schema_field_007() -> SarifFieldDescriptor {
     note="log.invocations is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_008() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -100,6 +115,7 @@ pub fn schema_field_008() -> SarifFieldDescriptor {
     note="log.automationDetails is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_009() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -110,6 +126,7 @@ pub fn schema_field_009() -> SarifFieldDescriptor {
     note="log.driver is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_010() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -120,6 +137,7 @@ pub fn schema_field_010() -> SarifFieldDescriptor {
     note="log.name is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_011() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -130,6 +148,7 @@ pub fn schema_field_011() -> SarifFieldDescriptor {
     note="log.version is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_012() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -140,6 +159,7 @@ pub fn schema_field_012() -> SarifFieldDescriptor {
     note="log.informationUri is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_013() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -150,6 +170,7 @@ pub fn schema_field_013() -> SarifFieldDescriptor {
     note="log.rules is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_014() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -160,6 +181,7 @@ pub fn schema_field_014() -> SarifFieldDescriptor {
     note="log.id is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_015() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -170,6 +192,7 @@ pub fn schema_field_015() -> SarifFieldDescriptor {
     note="log.shortDescription is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_016() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -180,6 +203,7 @@ pub fn schema_field_016() -> SarifFieldDescriptor {
     note="log.fullDescription is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_017() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -190,6 +214,7 @@ pub fn schema_field_017() -> SarifFieldDescriptor {
     note="log.defaultConfiguration is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_018() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -200,6 +225,7 @@ pub fn schema_field_018() -> SarifFieldDescriptor {
     note="log.helpUri is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_019() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -210,6 +236,7 @@ pub fn schema_field_019() -> SarifFieldDescriptor {
     note="log.properties is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_020() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -220,6 +247,7 @@ pub fn schema_field_020() -> SarifFieldDescriptor {
     note="log.ruleId is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_021() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -230,6 +258,7 @@ pub fn schema_field_021() -> SarifFieldDescriptor {
     note="log.level is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_022() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -240,6 +269,7 @@ pub fn schema_field_022() -> SarifFieldDescriptor {
     note="log.kind is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_023() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -250,6 +280,7 @@ pub fn schema_field_023() -> SarifFieldDescriptor {
     note="log.message is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_024() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -260,6 +291,7 @@ pub fn schema_field_024() -> SarifFieldDescriptor {
     note="log.locations is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_025() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -270,6 +302,7 @@ pub fn schema_field_025() -> SarifFieldDescriptor {
     note="log.partialFingerprints is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_026() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -280,6 +313,7 @@ pub fn schema_field_026() -> SarifFieldDescriptor {
     note="log.baselineState is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_027() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -290,6 +324,7 @@ pub fn schema_field_027() -> SarifFieldDescriptor {
     note="log.physicalLocation is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_028() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -300,6 +335,7 @@ pub fn schema_field_028() -> SarifFieldDescriptor {
     note="log.logicalLocations is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_029() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -310,6 +346,7 @@ pub fn schema_field_029() -> SarifFieldDescriptor {
     note="log.artifactLocation is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_030() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -320,6 +357,7 @@ pub fn schema_field_030() -> SarifFieldDescriptor {
     note="log.region is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_031() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -330,6 +368,7 @@ pub fn schema_field_031() -> SarifFieldDescriptor {
     note="log.uri is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_032() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -340,6 +379,7 @@ pub fn schema_field_032() -> SarifFieldDescriptor {
     note="log.uriBaseId is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_033() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -350,6 +390,7 @@ pub fn schema_field_033() -> SarifFieldDescriptor {
     note="log.index is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_034() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -360,6 +401,7 @@ pub fn schema_field_034() -> SarifFieldDescriptor {
     note="log.startLine is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_035() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -370,6 +412,7 @@ pub fn schema_field_035() -> SarifFieldDescriptor {
     note="log.startColumn is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_036() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -380,6 +423,7 @@ pub fn schema_field_036() -> SarifFieldDescriptor {
     note="log.endLine is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_037() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -390,6 +434,7 @@ pub fn schema_field_037() -> SarifFieldDescriptor {
     note="log.endColumn is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_038() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -400,6 +445,7 @@ pub fn schema_field_038() -> SarifFieldDescriptor {
     note="log.charOffset is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_039() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -410,6 +456,7 @@ pub fn schema_field_039() -> SarifFieldDescriptor {
     note="log.charLength is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_040() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -420,6 +467,7 @@ pub fn schema_field_040() -> SarifFieldDescriptor {
     note="log.length is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_041() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -430,6 +478,7 @@ pub fn schema_field_041() -> SarifFieldDescriptor {
     note="log.mimeType is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_042() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -440,6 +489,7 @@ pub fn schema_field_042() -> SarifFieldDescriptor {
     note="log.roles is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_043() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -450,6 +500,7 @@ pub fn schema_field_043() -> SarifFieldDescriptor {
     note="log.commandLine is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_044() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -460,6 +511,7 @@ pub fn schema_field_044() -> SarifFieldDescriptor {
     note="log.workingDirectory is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_045() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -470,6 +522,7 @@ pub fn schema_field_045() -> SarifFieldDescriptor {
     note="log.executionSuccessful is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_046() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -480,6 +533,7 @@ pub fn schema_field_046() -> SarifFieldDescriptor {
     note="log.tags is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_047() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -490,6 +544,7 @@ pub fn schema_field_047() -> SarifFieldDescriptor {
     note="log.securitySeverity is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_048() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -500,6 +555,7 @@ pub fn schema_field_048() -> SarifFieldDescriptor {
     note="log.precision is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_049() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -510,6 +566,7 @@ pub fn schema_field_049() -> SarifFieldDescriptor {
     note="log.problemSeverity is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_050() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -520,6 +577,7 @@ pub fn schema_field_050() -> SarifFieldDescriptor {
     note="log.stableKey is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_051() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -530,6 +588,7 @@ pub fn schema_field_051() -> SarifFieldDescriptor {
     note="run.version is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_052() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -540,6 +599,7 @@ pub fn schema_field_052() -> SarifFieldDescriptor {
     note="run.schema is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_053() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -550,6 +610,7 @@ pub fn schema_field_053() -> SarifFieldDescriptor {
     note="run.runs is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_054() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -560,6 +621,7 @@ pub fn schema_field_054() -> SarifFieldDescriptor {
     note="run.tool is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_055() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -570,6 +632,7 @@ pub fn schema_field_055() -> SarifFieldDescriptor {
     note="run.results is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_056() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -580,6 +643,7 @@ pub fn schema_field_056() -> SarifFieldDescriptor {
     note="run.artifacts is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_057() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -590,6 +654,7 @@ pub fn schema_field_057() -> SarifFieldDescriptor {
     note="run.invocations is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_058() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -600,6 +665,7 @@ pub fn schema_field_058() -> SarifFieldDescriptor {
     note="run.automationDetails is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_059() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -610,6 +676,7 @@ pub fn schema_field_059() -> SarifFieldDescriptor {
     note="run.driver is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_060() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -620,6 +687,7 @@ pub fn schema_field_060() -> SarifFieldDescriptor {
     note="run.name is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_061() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -630,6 +698,7 @@ pub fn schema_field_061() -> SarifFieldDescriptor {
     note="run.version is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_062() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -640,6 +709,7 @@ pub fn schema_field_062() -> SarifFieldDescriptor {
     note="run.informationUri is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_063() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -650,6 +720,7 @@ pub fn schema_field_063() -> SarifFieldDescriptor {
     note="run.rules is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_064() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -660,6 +731,7 @@ pub fn schema_field_064() -> SarifFieldDescriptor {
     note="run.id is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_065() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -670,6 +742,7 @@ pub fn schema_field_065() -> SarifFieldDescriptor {
     note="run.shortDescription is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_066() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -680,6 +753,7 @@ pub fn schema_field_066() -> SarifFieldDescriptor {
     note="run.fullDescription is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_067() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -690,6 +764,7 @@ pub fn schema_field_067() -> SarifFieldDescriptor {
     note="run.defaultConfiguration is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_068() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -700,6 +775,7 @@ pub fn schema_field_068() -> SarifFieldDescriptor {
     note="run.helpUri is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_069() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -710,6 +786,7 @@ pub fn schema_field_069() -> SarifFieldDescriptor {
     note="run.properties is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_070() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -720,6 +797,7 @@ pub fn schema_field_070() -> SarifFieldDescriptor {
     note="run.ruleId is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_071() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -730,6 +808,7 @@ pub fn schema_field_071() -> SarifFieldDescriptor {
     note="run.level is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_072() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -740,6 +819,7 @@ pub fn schema_field_072() -> SarifFieldDescriptor {
     note="run.kind is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_073() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -750,6 +830,7 @@ pub fn schema_field_073() -> SarifFieldDescriptor {
     note="run.message is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_074() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -760,6 +841,7 @@ pub fn schema_field_074() -> SarifFieldDescriptor {
     note="run.locations is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_075() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -770,6 +852,7 @@ pub fn schema_field_075() -> SarifFieldDescriptor {
     note="run.partialFingerprints is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_076() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -780,6 +863,7 @@ pub fn schema_field_076() -> SarifFieldDescriptor {
     note="run.baselineState is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_077() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -790,6 +874,7 @@ pub fn schema_field_077() -> SarifFieldDescriptor {
     note="run.physicalLocation is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_078() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -800,6 +885,7 @@ pub fn schema_field_078() -> SarifFieldDescriptor {
     note="run.logicalLocations is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_079() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -810,6 +896,7 @@ pub fn schema_field_079() -> SarifFieldDescriptor {
     note="run.artifactLocation is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_080() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -820,6 +907,7 @@ pub fn schema_field_080() -> SarifFieldDescriptor {
     note="run.region is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_081() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -830,6 +918,7 @@ pub fn schema_field_081() -> SarifFieldDescriptor {
     note="run.uri is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_082() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -840,6 +929,7 @@ pub fn schema_field_082() -> SarifFieldDescriptor {
     note="run.uriBaseId is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_083() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -850,6 +940,7 @@ pub fn schema_field_083() -> SarifFieldDescriptor {
     note="run.index is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_084() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -860,6 +951,7 @@ pub fn schema_field_084() -> SarifFieldDescriptor {
     note="run.startLine is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_085() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -870,6 +962,7 @@ pub fn schema_field_085() -> SarifFieldDescriptor {
     note="run.startColumn is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_086() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -880,6 +973,7 @@ pub fn schema_field_086() -> SarifFieldDescriptor {
     note="run.endLine is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_087() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -890,6 +984,7 @@ pub fn schema_field_087() -> SarifFieldDescriptor {
     note="run.endColumn is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_088() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -900,6 +995,7 @@ pub fn schema_field_088() -> SarifFieldDescriptor {
     note="run.charOffset is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_089() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -910,6 +1006,7 @@ pub fn schema_field_089() -> SarifFieldDescriptor {
     note="run.charLength is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_090() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -920,6 +1017,7 @@ pub fn schema_field_090() -> SarifFieldDescriptor {
     note="run.length is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_091() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -930,6 +1028,7 @@ pub fn schema_field_091() -> SarifFieldDescriptor {
     note="run.mimeType is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_092() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -940,6 +1039,7 @@ pub fn schema_field_092() -> SarifFieldDescriptor {
     note="run.roles is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_093() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -950,6 +1050,7 @@ pub fn schema_field_093() -> SarifFieldDescriptor {
     note="run.commandLine is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_094() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -960,6 +1061,7 @@ pub fn schema_field_094() -> SarifFieldDescriptor {
     note="run.workingDirectory is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_095() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -970,6 +1072,7 @@ pub fn schema_field_095() -> SarifFieldDescriptor {
     note="run.executionSuccessful is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_096() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -980,6 +1083,7 @@ pub fn schema_field_096() -> SarifFieldDescriptor {
     note="run.tags is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_097() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -990,6 +1094,7 @@ pub fn schema_field_097() -> SarifFieldDescriptor {
     note="run.securitySeverity is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_098() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1000,6 +1105,7 @@ pub fn schema_field_098() -> SarifFieldDescriptor {
     note="run.precision is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_099() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1010,6 +1116,7 @@ pub fn schema_field_099() -> SarifFieldDescriptor {
     note="run.problemSeverity is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_100() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1020,6 +1127,7 @@ pub fn schema_field_100() -> SarifFieldDescriptor {
     note="run.stableKey is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_101() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1030,6 +1138,7 @@ pub fn schema_field_101() -> SarifFieldDescriptor {
     note="tool.version is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_102() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1040,6 +1149,7 @@ pub fn schema_field_102() -> SarifFieldDescriptor {
     note="tool.schema is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_103() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1050,6 +1160,7 @@ pub fn schema_field_103() -> SarifFieldDescriptor {
     note="tool.runs is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_104() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1060,6 +1171,7 @@ pub fn schema_field_104() -> SarifFieldDescriptor {
     note="tool.tool is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_105() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1070,6 +1182,7 @@ pub fn schema_field_105() -> SarifFieldDescriptor {
     note="tool.results is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_106() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1080,6 +1193,7 @@ pub fn schema_field_106() -> SarifFieldDescriptor {
     note="tool.artifacts is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_107() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1090,6 +1204,7 @@ pub fn schema_field_107() -> SarifFieldDescriptor {
     note="tool.invocations is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_108() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1100,6 +1215,7 @@ pub fn schema_field_108() -> SarifFieldDescriptor {
     note="tool.automationDetails is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_109() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1110,6 +1226,7 @@ pub fn schema_field_109() -> SarifFieldDescriptor {
     note="tool.driver is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_110() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1120,6 +1237,7 @@ pub fn schema_field_110() -> SarifFieldDescriptor {
     note="tool.name is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_111() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1130,6 +1248,7 @@ pub fn schema_field_111() -> SarifFieldDescriptor {
     note="tool.version is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_112() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1140,6 +1259,7 @@ pub fn schema_field_112() -> SarifFieldDescriptor {
     note="tool.informationUri is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_113() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1150,6 +1270,7 @@ pub fn schema_field_113() -> SarifFieldDescriptor {
     note="tool.rules is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_114() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1160,6 +1281,7 @@ pub fn schema_field_114() -> SarifFieldDescriptor {
     note="tool.id is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_115() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1170,6 +1292,7 @@ pub fn schema_field_115() -> SarifFieldDescriptor {
     note="tool.shortDescription is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_116() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1180,6 +1303,7 @@ pub fn schema_field_116() -> SarifFieldDescriptor {
     note="tool.fullDescription is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_117() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1190,6 +1314,7 @@ pub fn schema_field_117() -> SarifFieldDescriptor {
     note="tool.defaultConfiguration is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_118() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1200,6 +1325,7 @@ pub fn schema_field_118() -> SarifFieldDescriptor {
     note="tool.helpUri is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_119() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1210,6 +1336,7 @@ pub fn schema_field_119() -> SarifFieldDescriptor {
     note="tool.properties is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_120() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1220,6 +1347,7 @@ pub fn schema_field_120() -> SarifFieldDescriptor {
     note="tool.ruleId is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_121() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1230,6 +1358,7 @@ pub fn schema_field_121() -> SarifFieldDescriptor {
     note="tool.level is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_122() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1240,6 +1369,7 @@ pub fn schema_field_122() -> SarifFieldDescriptor {
     note="tool.kind is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_123() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1250,6 +1380,7 @@ pub fn schema_field_123() -> SarifFieldDescriptor {
     note="tool.message is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_124() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1260,6 +1391,7 @@ pub fn schema_field_124() -> SarifFieldDescriptor {
     note="tool.locations is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_125() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1270,6 +1402,7 @@ pub fn schema_field_125() -> SarifFieldDescriptor {
     note="tool.partialFingerprints is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_126() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1280,6 +1413,7 @@ pub fn schema_field_126() -> SarifFieldDescriptor {
     note="tool.baselineState is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_127() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1290,6 +1424,7 @@ pub fn schema_field_127() -> SarifFieldDescriptor {
     note="tool.physicalLocation is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_128() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1300,6 +1435,7 @@ pub fn schema_field_128() -> SarifFieldDescriptor {
     note="tool.logicalLocations is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_129() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1310,6 +1446,7 @@ pub fn schema_field_129() -> SarifFieldDescriptor {
     note="tool.artifactLocation is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_130() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1320,6 +1457,7 @@ pub fn schema_field_130() -> SarifFieldDescriptor {
     note="tool.region is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_131() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1330,6 +1468,7 @@ pub fn schema_field_131() -> SarifFieldDescriptor {
     note="tool.uri is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_132() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1340,6 +1479,7 @@ pub fn schema_field_132() -> SarifFieldDescriptor {
     note="tool.uriBaseId is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_133() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1350,6 +1490,7 @@ pub fn schema_field_133() -> SarifFieldDescriptor {
     note="tool.index is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_134() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1360,6 +1501,7 @@ pub fn schema_field_134() -> SarifFieldDescriptor {
     note="tool.startLine is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_field_135() -> SarifFieldDescriptor {
   SarifFieldDescriptor::SarifFieldDescriptor(
@@ -1370,6 +1512,7 @@ pub fn schema_field_135() -> SarifFieldDescriptor {
     note="tool.startColumn is part of the SARIF 2.1.0 shape handled by sarifkit.",
   )
 }
+
 ///|
 pub fn schema_fields() -> Array[SarifFieldDescriptor] {
   [
@@ -1510,32 +1653,51 @@ pub fn schema_fields() -> Array[SarifFieldDescriptor] {
     schema_field_135(),
   ]
 }
+
 ///|
-pub fn schema_fields_for(object_name : StringView) -> Array[SarifFieldDescriptor] {
+pub fn schema_fields_for(
+  object_name : StringView,
+) -> Array[SarifFieldDescriptor] {
   let needle = object_name.to_owned()
   schema_fields().filter(field => field.object_name == needle)
 }
+
 ///|
-pub fn schema_required_fields_for(object_name : StringView) -> Array[SarifFieldDescriptor] {
+pub fn schema_required_fields_for(
+  object_name : StringView,
+) -> Array[SarifFieldDescriptor] {
   schema_fields_for(object_name).filter(field => field.required)
 }
+
 ///|
-pub fn schema_lookup(object_name : StringView, field_name : StringView) -> SarifFieldDescriptor? {
+pub fn schema_lookup(
+  object_name : StringView,
+  field_name : StringView,
+) -> SarifFieldDescriptor? {
   let object_needle = object_name.to_owned()
   let field_needle = field_name.to_owned()
   for field in schema_fields() {
-    if field.object_name == object_needle && field.field_name == field_needle { return Some(field) }
+    if field.object_name == object_needle && field.field_name == field_needle {
+      return Some(field)
+    }
   }
   None
 }
+
 ///|
 pub fn schema_catalog_report() -> String {
   let fields = schema_fields()
   let mut out = "sarifkit schema fields=" + fields.length().to_string()
   for field in fields {
     let marker = if field.required { " required" } else { " optional" }
-    out = out + "\n" + field.object_name + "." + field.field_name + marker + " " + field.value_kind
+    out = out +
+      "\n" +
+      field.object_name +
+      "." +
+      field.field_name +
+      marker +
+      " " +
+      field.value_kind
   }
   out
 }
-

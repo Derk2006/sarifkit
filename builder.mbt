@@ -80,7 +80,10 @@ fn find_rule_index(rules : ArrayView[SarifRule], id : StringView) -> Int? {
 }
 
 ///|
-fn find_artifact_index(artifacts : ArrayView[Artifact], uri : StringView) -> Int? {
+fn find_artifact_index(
+  artifacts : ArrayView[Artifact],
+  uri : StringView,
+) -> Int? {
   let needle = uri.to_owned()
   for i, artifact in artifacts {
     if artifact.location.uri == needle {
@@ -106,7 +109,9 @@ pub fn SarifBuilder::add_rule(
       self.rules.push({
         id: id.to_owned(),
         name,
-        short_description: short_description.map(text => SarifMessage::SarifMessage(text)),
+        short_description: short_description.map(text => {
+          SarifMessage::SarifMessage(text)
+        }),
         full_description: None,
         default_level: normalize_level(default_level),
         help_uri: None,
@@ -163,7 +168,11 @@ pub fn SarifBuilder::add_invocation(
   working_directory? : String,
   execution_successful? : Bool = true,
 ) -> Unit {
-  self.invocations.push({ command_line, working_directory, execution_successful })
+  self.invocations.push({
+    command_line,
+    working_directory,
+    execution_successful,
+  })
 }
 
 ///|
@@ -267,6 +276,6 @@ pub fn quick_log(
 ) -> SarifLog {
   let builder = SarifBuilder::SarifBuilder(tool_name)
   builder.add_fingerprinted_result(rule_id, message, uri, line, column~, level~)
-    |> ignore
+  |> ignore
   builder.log()
 }

@@ -26,7 +26,9 @@ test "filters keep by level rule uri and limit" {
 ///|
 test "merge combines runs by tool and keeps unique rules and artifacts" {
   let left = @sarifkit.sample_log()
-  let right = @sarifkit.quick_log("moonlint", "MB777", "new issue", "src/new.mbt", 1)
+  let right = @sarifkit.quick_log(
+    "moonlint", "MB777", "new issue", "src/new.mbt", 1,
+  )
   let merged = left.merge_with(right)
   @test.assert_eq(merged.runs.length(), 1)
   @test.assert_eq(merged.stats().results, 3)
@@ -44,9 +46,10 @@ test "baseline marks new unchanged and absent results" {
     "src/main.mbt",
     12,
     column=3,
-  ) |> ignore
+  )
+  |> ignore
   builder.add_fingerprinted_result("MB123", "new warning", "src/new.mbt", 1)
-    |> ignore
+  |> ignore
   let current = builder.run().mark_against(previous)
   let summary = @sarifkit.baseline_summary(current.results)
   assert_true(summary.contains("new=1"))

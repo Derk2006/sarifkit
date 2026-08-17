@@ -1,6 +1,5 @@
 {
   "import": [
     "Derk2006/sarifkit"
-  ],
-  "is-main": true
+  ]
 }

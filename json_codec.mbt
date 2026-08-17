@@ -1,3 +1,4 @@
+///|
 fn string_array_json(items : ArrayView[String]) -> Json {
   Json::array(items.map(item => Json::string(item)))
 }
@@ -157,7 +158,9 @@ fn result_json(result : SarifResult) -> Json {
   obj["kind"] = Json::string(result.kind)
   obj["message"] = message_json(result.message)
   if result.locations.length() > 0 {
-    obj["locations"] = Json::array(result.locations.map(location => location_json(location)))
+    obj["locations"] = Json::array(
+      result.locations.map(location => location_json(location)),
+    )
   }
   if result.fingerprints.length() > 0 {
     obj["partialFingerprints"] = fingerprints_json(result.fingerprints)
@@ -178,7 +181,9 @@ fn invocation_json(invocation : SarifInvocation) -> Json {
     obj["commandLine"] = Json::string(value)
   }
   if invocation.working_directory is Some(value) {
-    obj["workingDirectory"] = artifact_location_json(ArtifactLocation::ArtifactLocation(value))
+    obj["workingDirectory"] = artifact_location_json(
+      ArtifactLocation::ArtifactLocation(value),
+    )
   }
   obj["executionSuccessful"] = Json::boolean(invocation.execution_successful)
   Json::object(obj)
@@ -190,10 +195,14 @@ fn run_json(run : SarifRun) -> Json {
   obj["tool"] = tool_json(run.tool)
   obj["results"] = Json::array(run.results.map(result => result_json(result)))
   if run.artifacts.length() > 0 {
-    obj["artifacts"] = Json::array(run.artifacts.map(artifact => artifact_json(artifact)))
+    obj["artifacts"] = Json::array(
+      run.artifacts.map(artifact => artifact_json(artifact)),
+    )
   }
   if run.invocations.length() > 0 {
-    obj["invocations"] = Json::array(run.invocations.map(item => invocation_json(item)))
+    obj["invocations"] = Json::array(
+      run.invocations.map(item => invocation_json(item)),
+    )
   }
   if run.automation_id is Some(value) {
     let details : Map[String, Json] = Map([])
@@ -233,7 +242,10 @@ fn required(obj : Map[String, Json], key : String) -> Result[Json, SarifError] {
 }
 
 ///|
-fn decode_string(obj : Map[String, Json], key : String) -> Result[String, SarifError] {
+fn decode_string(
+  obj : Map[String, Json],
+  key : String,
+) -> Result[String, SarifError] {
   match required(obj, key) {
     Ok(String(value)) => Ok(value)
     Ok(_) => Err(JsonDecode(path=key, expected="string"))
@@ -266,7 +278,10 @@ fn decode_int_optional(
 }
 
 ///|
-fn decode_message(json : Json, path : String) -> Result[SarifMessage, SarifError] {
+fn decode_message(
+  json : Json,
+  path : String,
+) -> Result[SarifMessage, SarifError] {
   match json {
     Object(obj) => {
       let text = match decode_string(obj, "text") {
@@ -320,7 +335,8 @@ fn decode_region(json : Json, path : String) -> Result[Region, SarifError] {
       let start_column = match json_get(obj, "startColumn") {
         Some(Number(value, ..)) => value.to_int()
         None => 1
-        Some(_) => return Err(JsonDecode(path="startColumn", expected="integer"))
+        Some(_) =>
+          return Err(JsonDecode(path="startColumn", expected="integer"))
       }
       let end_line = match decode_int_optional(obj, "endLine") {
         Ok(value) => value
@@ -344,35 +360,48 @@ fn decode_region(json : Json, path : String) -> Result[Region, SarifError] {
 }
 
 ///|
-fn decode_location(json : Json, path : String) -> Result[SarifLocation, SarifError] {
+fn decode_location(
+  json : Json,
+  path : String,
+) -> Result[SarifLocation, SarifError] {
   match json {
     Object(obj) => {
       let physical = match required(obj, "physicalLocation") {
         Ok(Object(phys)) => {
           let artifact = match required(phys, "artifactLocation") {
-            Ok(value) => match decode_artifact_location(value, "\{path}.physicalLocation.artifactLocation") {
-              Ok(decoded) => decoded
-              Err(err) => return Err(err)
-            }
+            Ok(value) =>
+              match
+                decode_artifact_location(
+                  value,
+                  "\{path}.physicalLocation.artifactLocation",
+                ) {
+                Ok(decoded) => decoded
+                Err(err) => return Err(err)
+              }
             Err(err) => return Err(err)
           }
           let region = match json_get(phys, "region") {
-            Some(value) => match decode_region(value, "\{path}.physicalLocation.region") {
-              Ok(decoded) => Some(decoded)
-              Err(err) => return Err(err)
-            }
+            Some(value) =>
+              match decode_region(value, "\{path}.physicalLocation.region") {
+                Ok(decoded) => Some(decoded)
+                Err(err) => return Err(err)
+              }
             None => None
           }
           { artifact_location: artifact, region }
         }
-        Ok(_) => return Err(JsonDecode(path="\{path}.physicalLocation", expected="object"))
+        Ok(_) =>
+          return Err(
+            JsonDecode(path="\{path}.physicalLocation", expected="object"),
+          )
         Err(err) => return Err(err)
       }
       let message = match json_get(obj, "message") {
-        Some(value) => match decode_message(value, "\{path}.message") {
-          Ok(decoded) => Some(decoded)
-          Err(err) => return Err(err)
-        }
+        Some(value) =>
+          match decode_message(value, "\{path}.message") {
+            Ok(decoded) => Some(decoded)
+            Err(err) => return Err(err)
+          }
         None => None
       }
       Ok({ physical_location: physical, message, logical_name: None })
@@ -421,10 +450,11 @@ fn decode_result(json : Json, path : String) -> Result[SarifResult, SarifError] 
         Err(err) => return Err(err)
       }
       let message = match required(obj, "message") {
-        Ok(value) => match decode_message(value, "\{path}.message") {
-          Ok(decoded) => decoded
-          Err(err) => return Err(err)
-        }
+        Ok(value) =>
+          match decode_message(value, "\{path}.message") {
+            Ok(decoded) => decoded
+            Err(err) => return Err(err)
+          }
         Err(err) => return Err(err)
       }
       let locations = match decode_locations(obj, path) {
@@ -453,25 +483,27 @@ fn decode_result(json : Json, path : String) -> Result[SarifResult, SarifError] 
 ///|
 fn decode_tool(json : Json, path : String) -> Result[ToolDriver, SarifError] {
   match json {
-    Object(obj) => match required(obj, "driver") {
-      Ok(Object(driver)) => {
-        let name = match decode_string(driver, "name") {
-          Ok(value) => value
-          Err(err) => return Err(err)
+    Object(obj) =>
+      match required(obj, "driver") {
+        Ok(Object(driver)) => {
+          let name = match decode_string(driver, "name") {
+            Ok(value) => value
+            Err(err) => return Err(err)
+          }
+          let version = match decode_optional_string(driver, "version") {
+            Ok(value) => value
+            Err(err) => return Err(err)
+          }
+          let information_uri = match
+            decode_optional_string(driver, "informationUri") {
+            Ok(value) => value
+            Err(err) => return Err(err)
+          }
+          Ok({ name, version, information_uri, rules: [] })
         }
-        let version = match decode_optional_string(driver, "version") {
-          Ok(value) => value
-          Err(err) => return Err(err)
-        }
-        let information_uri = match decode_optional_string(driver, "informationUri") {
-          Ok(value) => value
-          Err(err) => return Err(err)
-        }
-        Ok({ name, version, information_uri, rules: [] })
+        Ok(_) => Err(JsonDecode(path="\{path}.driver", expected="object"))
+        Err(err) => Err(err)
       }
-      Ok(_) => Err(JsonDecode(path="\{path}.driver", expected="object"))
-      Err(err) => Err(err)
-    }
     _ => Err(JsonDecode(path~, expected="tool object"))
   }
 }
@@ -481,10 +513,11 @@ fn decode_run(json : Json, path : String) -> Result[SarifRun, SarifError] {
   match json {
     Object(obj) => {
       let tool = match required(obj, "tool") {
-        Ok(value) => match decode_tool(value, "\{path}.tool") {
-          Ok(decoded) => decoded
-          Err(err) => return Err(err)
-        }
+        Ok(value) =>
+          match decode_tool(value, "\{path}.tool") {
+            Ok(decoded) => decoded
+            Err(err) => return Err(err)
+          }
         Err(err) => return Err(err)
       }
       let results = match json_get(obj, "results") {
@@ -499,15 +532,10 @@ fn decode_run(json : Json, path : String) -> Result[SarifRun, SarifError] {
           }
           out
         }
-        Some(_) => return Err(JsonDecode(path="\{path}.results", expected="array"))
+        Some(_) =>
+          return Err(JsonDecode(path="\{path}.results", expected="array"))
       }
-      Ok({
-        tool,
-        results,
-        artifacts: [],
-        invocations: [],
-        automation_id: None,
-      })
+      Ok({ tool, results, artifacts: [], invocations: [], automation_id: None })
     }
     _ => Err(JsonDecode(path~, expected="run object"))
   }
@@ -546,7 +574,9 @@ pub fn SarifLog::from_json(json : Json) -> Result[SarifLog, SarifError] {
 }
 
 ///|
-pub fn SarifLog::from_json_string(text : StringView) -> Result[SarifLog, SarifError] {
+pub fn SarifLog::from_json_string(
+  text : StringView,
+) -> Result[SarifLog, SarifError] {
   let json = @json.parse(text) catch {
     err => return Err(JsonParse(message=err.to_string()))
   }

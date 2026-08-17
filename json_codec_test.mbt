@@ -6,9 +6,7 @@ test "sample log serializes to SARIF JSON and parses core fields back" {
   assert_true(text.contains("\"ruleId\": \"MB001\""))
   assert_true(text.contains("\"partialFingerprints\""))
   let parsed = @sarifkit.SarifLog::from_json_string(text)
-  guard parsed is Ok(decoded) else {
-    fail("expected SARIF JSON to parse")
-  }
+  guard parsed is Ok(decoded) else { fail("expected SARIF JSON to parse") }
   @test.assert_eq(decoded.version, "2.1.0")
   @test.assert_eq(decoded.runs.length(), 1)
   @test.assert_eq(decoded.runs[0].tool.name, "moonlint")
@@ -17,7 +15,8 @@ test "sample log serializes to SARIF JSON and parses core fields back" {
 
 ///|
 test "json decoder reports malformed and structurally invalid input" {
-  guard @sarifkit.SarifLog::from_json_string("{") is Err(@sarifkit.JsonParse(..)) else {
+  guard @sarifkit.SarifLog::from_json_string("{")
+    is Err(@sarifkit.JsonParse(..)) else {
     fail("expected parse error")
   }
   guard @sarifkit.SarifLog::from_json_string("{\"version\":\"2.1.0\"}")

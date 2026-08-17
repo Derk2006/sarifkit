@@ -2,7 +2,10 @@
 test "validation accepts sample log and summarizes diagnostics" {
   let log = @sarifkit.sample_log()
   let diagnostics = log.validate()
-  @test.assert_eq(@sarifkit.diagnostics_summary(diagnostics), "diagnostics errors=0 warnings=0")
+  @test.assert_eq(
+    @sarifkit.diagnostics_summary(diagnostics),
+    "diagnostics errors=0 warnings=0",
+  )
   assert_true(log.is_valid())
 }
 
@@ -30,7 +33,9 @@ test "validation catches invalid version region and empty message" {
   let diagnostics = log.validate()
   assert_true(diagnostics.length() >= 5)
   assert_false(log.is_valid())
-  assert_true(@sarifkit.diagnostics_report(diagnostics).contains("SARIF validation"))
+  assert_true(
+    @sarifkit.diagnostics_report(diagnostics).contains("SARIF validation"),
+  )
 }
 
 ///|

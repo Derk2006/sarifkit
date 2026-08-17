@@ -51,7 +51,13 @@ fn add_level(stats : SarifStats, level : StringView) -> SarifStats {
 ///|
 pub fn SarifRun::stats(self : SarifRun) -> SarifStats {
   let mut stats = SarifStats::empty()
-  stats = { ..stats, runs: 1, rules: self.tool.rules.length(), artifacts: self.artifacts.length(), invocations: self.invocations.length() }
+  stats = {
+    ..stats,
+    runs: 1,
+    rules: self.tool.rules.length(),
+    artifacts: self.artifacts.length(),
+    invocations: self.invocations.length(),
+  }
   for result in self.results {
     stats = add_level(stats, result.level)
     if result.baseline_state is Some(_) {
@@ -92,7 +98,10 @@ pub struct RuleSummary {
 } derive(Eq, Debug, ToJson)
 
 ///|
-fn find_rule_summary(items : ArrayView[RuleSummary], rule_id : StringView) -> Int? {
+fn find_rule_summary(
+  items : ArrayView[RuleSummary],
+  rule_id : StringView,
+) -> Int? {
   let needle = rule_id.to_owned()
   for i, item in items {
     if item.rule_id == needle {
@@ -110,15 +119,28 @@ pub fn SarifRun::rule_summaries(self : SarifRun) -> Array[RuleSummary] {
       Some(index) => {
         let current = out[index]
         let next = match normalize_level(result.level) {
-          "error" => { ..current, count: current.count + 1, errors: current.errors + 1 }
-          "warning" => { ..current, count: current.count + 1, warnings: current.warnings + 1 }
-          "note" => { ..current, count: current.count + 1, notes: current.notes + 1 }
+          "error" =>
+            { ..current, count: current.count + 1, errors: current.errors + 1 }
+          "warning" =>
+            {
+              ..current,
+              count: current.count + 1,
+              warnings: current.warnings + 1,
+            }
+          "note" =>
+            { ..current, count: current.count + 1, notes: current.notes + 1 }
           _ => { ..current, count: current.count + 1 }
         }
         out[index] = next
       }
       None => {
-        let base = { rule_id: result.rule_id, count: 1, errors: 0, warnings: 0, notes: 0 }
+        let base = {
+          rule_id: result.rule_id,
+          count: 1,
+          errors: 0,
+          warnings: 0,
+          notes: 0,
+        }
         let next = match normalize_level(result.level) {
           "error" => { ..base, errors: 1 }
           "warning" => { ..base, warnings: 1 }

@@ -2,17 +2,18 @@
 fn result_identity(result : SarifResult) -> String {
   match result.fingerprint_value("stableKey") {
     Some(value) => value
-    None => match (result.primary_uri(), result.primary_region()) {
-      (Some(uri), Some(region)) =>
-        stable_result_key(
-          result.rule_id,
-          result.message.text,
-          uri,
-          region.start_line,
-          region.start_column,
-        )
-      _ => stable_hash("\{result.rule_id}|\{result.message.text}")
-    }
+    None =>
+      match (result.primary_uri(), result.primary_region()) {
+        (Some(uri), Some(region)) =>
+          stable_result_key(
+            result.rule_id,
+            result.message.text,
+            uri,
+            region.start_line,
+            region.start_column,
+          )
+        _ => stable_hash("\{result.rule_id}|\{result.message.text}")
+      }
   }
 }
 
@@ -35,7 +36,11 @@ pub fn mark_baseline(
   let out : Array[SarifResult] = []
   for result in current {
     let id = result_identity(result)
-    let state = if contains_identity(previous, id) { "unchanged" } else { "new" }
+    let state = if contains_identity(previous, id) {
+      "unchanged"
+    } else {
+      "new"
+    }
     out.push({ ..result, baseline_state: Some(state) })
   }
   for old in previous {

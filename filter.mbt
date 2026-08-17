@@ -49,28 +49,25 @@ pub fn SarifLog::filter_by_rule(
 }
 
 ///|
-pub fn SarifRun::filter_by_uri(
-  self : SarifRun,
-  uri : StringView,
-) -> SarifRun {
+pub fn SarifRun::filter_by_uri(self : SarifRun, uri : StringView) -> SarifRun {
   let needle = uri.to_owned()
-  self.filter_results(result =>
+  self.filter_results(result => {
     match result.primary_uri() {
       Some(value) => value == needle
       None => false
-    },
-  )
+    }
+  })
 }
 
 ///|
 pub fn SarifLog::filter_by_uri(self : SarifLog, uri : StringView) -> SarifLog {
   let needle = uri.to_owned()
-  self.filter_results(result =>
+  self.filter_results(result => {
     match result.primary_uri() {
       Some(value) => value == needle
       None => false
-    },
-  )
+    }
+  })
 }
 
 ///|
@@ -114,20 +111,20 @@ pub fn SarifLog::only_errors(self : SarifLog) -> SarifLog {
 
 ///|
 pub fn SarifRun::drop_baseline_absent(self : SarifRun) -> SarifRun {
-  self.filter_results(result =>
+  self.filter_results(result => {
     match result.baseline_state {
       Some("absent") => false
       _ => true
-    },
-  )
+    }
+  })
 }
 
 ///|
 pub fn SarifLog::drop_baseline_absent(self : SarifLog) -> SarifLog {
-  self.filter_results(result =>
+  self.filter_results(result => {
     match result.baseline_state {
       Some("absent") => false
       _ => true
-    },
-  )
+    }
+  })
 }

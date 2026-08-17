@@ -1,5 +1,8 @@
 ///|
-fn merge_rules(left : ArrayView[SarifRule], right : ArrayView[SarifRule]) -> Array[SarifRule] {
+fn merge_rules(
+  left : ArrayView[SarifRule],
+  right : ArrayView[SarifRule],
+) -> Array[SarifRule] {
   let out = left.to_owned()
   for rule in right {
     if find_rule_by_id(out, rule.id) is None {
@@ -10,7 +13,10 @@ fn merge_rules(left : ArrayView[SarifRule], right : ArrayView[SarifRule]) -> Arr
 }
 
 ///|
-fn merge_artifacts(left : ArrayView[Artifact], right : ArrayView[Artifact]) -> Array[Artifact] {
+fn merge_artifacts(
+  left : ArrayView[Artifact],
+  right : ArrayView[Artifact],
+) -> Array[Artifact] {
   let out = left.to_owned()
   for artifact in right {
     let mut found = false
@@ -27,7 +33,10 @@ fn merge_artifacts(left : ArrayView[Artifact], right : ArrayView[Artifact]) -> A
 }
 
 ///|
-pub fn find_rule_by_id(rules : ArrayView[SarifRule], id : StringView) -> SarifRule? {
+pub fn find_rule_by_id(
+  rules : ArrayView[SarifRule],
+  id : StringView,
+) -> SarifRule? {
   let needle = id.to_owned()
   for rule in rules {
     if rule.id == needle {

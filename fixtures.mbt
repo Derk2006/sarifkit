@@ -52,7 +52,10 @@ pub fn sample_run() -> SarifRun {
   SarifRun::SarifRun(
     driver,
     results=[sample_result(), sample_error_result()],
-    artifacts=[Artifact::Artifact("src/main.mbt"), Artifact::Artifact("moon.mod")],
+    artifacts=[
+      Artifact::Artifact("src/main.mbt"),
+      Artifact::Artifact("moon.mod"),
+    ],
     invocations=[SarifInvocation::SarifInvocation(command_line="moon test")],
     automation_id="ci",
   )

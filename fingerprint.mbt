@@ -38,11 +38,11 @@ pub fn SarifResult::with_fingerprint(
   for i, item in fingerprints {
     if item.key == needle {
       fingerprints[i] = Fingerprint::Fingerprint(key, value)
-      return { ..self, fingerprints }
+      return { ..self, fingerprints, }
     }
   }
   fingerprints.push(Fingerprint::Fingerprint(key, value))
-  { ..self, fingerprints }
+  { ..self, fingerprints, }
 }
 
 ///|
@@ -58,13 +58,20 @@ pub fn SarifResult::with_stable_fingerprint(self : SarifResult) -> SarifResult {
       )
       self.with_fingerprint("stableKey", key)
     }
-    _ => self.with_fingerprint("stableKey", stable_hash("\{self.rule_id}|\{self.message.text}"))
+    _ =>
+      self.with_fingerprint(
+        "stableKey",
+        stable_hash("\{self.rule_id}|\{self.message.text}"),
+      )
   }
 }
 
 ///|
 pub fn SarifRun::with_stable_fingerprints(self : SarifRun) -> SarifRun {
-  { ..self, results: self.results.map(result => result.with_stable_fingerprint()) }
+  {
+    ..self,
+    results: self.results.map(result => result.with_stable_fingerprint()),
+  }
 }
 
 ///|

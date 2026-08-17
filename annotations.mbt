@@ -37,7 +37,9 @@ pub fn github_annotation_level(level : StringView) -> String {
 }
 
 ///|
-pub fn SarifResult::to_github_annotation(self : SarifResult) -> GithubAnnotation? {
+pub fn SarifResult::to_github_annotation(
+  self : SarifResult,
+) -> GithubAnnotation? {
   match (self.primary_uri(), self.primary_region()) {
     (Some(uri), Some(region)) => {
       let end_line = match region.end_line {
