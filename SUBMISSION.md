@@ -15,9 +15,9 @@
 
 项目已建立 MoonBit 工程结构，包含 SARIF 2.1.0 核心模型、构造器、JSON 编码与解码、校验策略、统计摘要、筛选、合并、baseline 标记、GitHub annotation 转换、规则目录、字段目录、单元测试、示例入口、README、CI、设计说明、测试记录和发布记录。
 
-## 本次计划开发或新增内容
+## 本次已开发或新增内容
 
-本次黑客松完成一个可复用的 MoonBit 原生 SARIF 工具库。重点新增：
+本次黑客松已完成一个可复用的 MoonBit 原生 SARIF 工具库。核心新增内容包括：
 
 - SARIF 日志、run、rule、result、location、region、artifact 等基础模型。
 - `SarifBuilder` 和 `quick_log`，降低工具生成 SARIF 的接入成本。
@@ -27,23 +27,24 @@
 - 结果筛选、日志合并、稳定指纹和 baseline 对比。
 - 可复用规则模板目录和 SARIF schema 字段目录。
 
-## 项目预期目标和技术路线
+## 项目目标和技术路线
 
 技术路线是以 MoonBit 标准库 JSON 能力为基础，先建立强类型 SARIF 子集模型，再围绕开发工具常见工作流补充构造、校验、统计、合并和输出能力。项目保持无外部运行时依赖，核心功能均由 MoonBit 实现。
 
-预期目标：
+已达成目标：
 
 - 可作为 MoonBit lint、包质量检查、安全扫描和 CI 工具的 SARIF 输出层。
 - 可在 GitHub Actions 中把 SARIF 结果转换成 annotation。
-- 可为后续 MoonBit 开发工具提供稳定的诊断交换格式基础。
-- 项目边界清晰，后续可继续扩展 codeFlows、taxonomies 和完整 schema 校验。
+- 可为 MoonBit 开发工具提供稳定的诊断交换格式基础。
+- 项目边界清晰，当前版本聚焦静态分析、lint、包质量检查和 CI 输出常用路径。
 
-## 预计完成功能、测试和文档
+## 已完成功能、测试和文档
 
 - 功能：构造、JSON、校验、统计、筛选、合并、baseline、annotation、规则目录、字段目录。
 - 测试：覆盖模型、builder、JSON roundtrip、错误解析、校验策略、统计、筛选、合并、baseline、annotation 和目录查询。
 - 文档：README、设计说明、非重复调研、测试记录、工作记录、发布记录和更新日志。
 - CI：GitHub Actions 执行 `moon check`、`moon build`、`moon test`、`moon run cmd/main`、`moon package`。
+- 验证：本地有效 MoonBit 代码行数为 4408 行，已达到活动给出的 4000 行参考规模。
 
 ## Mooncakes 非重复说明
 

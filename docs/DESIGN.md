@@ -41,9 +41,9 @@
 
 调用方可通过 `SarifValidationPolicy` 调整是否要求 location、artifact 声明、最低级别和每个 run 的最大结果数。
 
-## 后续扩展
+## 当前功能边界
 
-- 完整建模 codeFlows、threadFlows、graphs 和 taxonomies。
-- 增加更严格的官方 schema 校验子集。
-- 增加大型日志流式编码和报告切分。
-- 增加更多 CI 平台输出适配。
+- 当前版本聚焦静态分析、lint、包质量检查和 CI 输出常用路径。
+- 当前版本覆盖 SARIF 报告构造、轻量解析、校验、统计、筛选、合并、baseline 和 GitHub annotation 转换。
+- codeFlows、threadFlows、graphs、taxonomies、大型日志流式编码和多 CI 平台适配不属于当前验收版本的功能边界。
+- 当前边界内的构建、测试、示例、文档和发布包均已完成验证。

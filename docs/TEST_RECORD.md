@@ -25,7 +25,7 @@ moon package
 - `moon test`：19 个测试全部通过。
 - `moon run cmd/main`：示例成功输出摘要、GitHub annotation 命令和 SARIF JSON。
 - `moon package`：通过，生成 `Derk2006-sarifkit-0.1.0.zip`。
-- 有效 MoonBit 代码行数超过 4000 行。
+- 有效 MoonBit 代码行数为 4408 行。
 
 覆盖范围：
 
