@@ -18,8 +18,11 @@ jobs:
       # version instead of "whatever latest was that morning".
       - name: Toolchain version
         run: moon version --all
+      # Warnings are how a toolchain announces an upcoming break: a deprecated
+      # manifest format, an API renamed. Failing on them turns "we will find
+      # out at the next maintenance round" into "we find out on this commit".
       - name: Check
-        run: moon check
+        run: moon check --deny-warn
       # README declares wasm as the target; wasm-gc and js are supported too,
       # so all three are built and tested rather than assumed to work.
       - name: Build
