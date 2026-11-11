@@ -3,6 +3,7 @@ name: CI
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   moon:
@@ -13,13 +14,27 @@ jobs:
         run: |
           curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
           echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      # Print the full toolchain so a red build can be tied to a concrete
+      # version instead of "whatever latest was that morning".
+      - name: Toolchain version
+        run: moon version --all
       - name: Check
         run: moon check
+      # README declares wasm as the target; wasm-gc and js are supported too,
+      # so all three are built and tested rather than assumed to work.
       - name: Build
-        run: moon build
+        run: |
+          moon build
+          moon build --target wasm-gc
+          moon build --target js
       - name: Test
-        run: moon test
+        run: |
+          moon test
+          moon test --target wasm-gc
+          moon test --target js
       - name: Example
         run: moon run cmd/main
+      - name: Doc
+        run: moon doc
       - name: Package
         run: moon package
