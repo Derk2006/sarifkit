@@ -7,7 +7,7 @@ SARIF 是 GitHub Code Scanning、静态分析器和安全工具常用的交换�
 ## 安装
 
 ```bash
-moon add Derk2006/sarifkit@0.1.1
+moon add Derk2006/sarifkit@0.1.2
 ```
 
 Mooncakes 包名：
@@ -15,6 +15,16 @@ Mooncakes 包名：
 ```text
 Derk2006/sarifkit
 ```
+
+`moon add` 只写入模块依赖，`@sarifkit` 这个别名要在**使用方的包**里声明，不在 `moon.mod` 里：
+
+```text
+import {
+  "Derk2006/sarifkit" @sarifkit,
+}
+```
+
+声明后即可在 `src/main.mbt` 里直接使用 `@sarifkit.quick_log(...)`。下面的「快速示例」就是在这样的项目里实测通过的内容。
 
 ## 快速示例
 
@@ -36,12 +46,49 @@ test {
 
 ```bash
 moon check
-moon build
-moon test
+moon build                        # wasm，默认后端
+moon build --target wasm-gc
+moon build --target js
+moon test                         # 19 个测试，三个后端均可运行
 moon doc
 moon run cmd/main
 moon package
 ```
+
+## 工具链兼容性
+
+最近一次维护验证：**2026-11-11**，对应 2026 年 8/9/10 月黑客松项目的持续可用性检查。
+
+验证使用的工具链（`moon version --all` 原样记录）：
+
+```text
+moon 0.1.20260904 (94521db 2026-09-04) ~\.moon\bin\bin\moon.exe
+moonc v0.10.12+1634b282e (2026-09-07) ~\.moon\bin\bin\moonc.exe
+moonrun 0.1.20260904 (94521db 2026-09-04) ~\.moon\bin\bin\moonrun.exe
+
+Feature flags enabled: rr_moon_mod,rr_moon_pkg
+```
+
+同一次验证的结果：
+
+| 命令 | 结果 |
+|---|---|
+| `moon check --deny-warn` | 通过，零警告 |
+| `moon build`（wasm） | 通过 |
+| `moon build --target wasm-gc` | 通过 |
+| `moon build --target js` | 通过 |
+| `moon test` | 19/19 通过 |
+| `moon test --target wasm-gc` | 19/19 通过 |
+| `moon test --target js` | 19/19 通过 |
+| `moon run cmd/main` | 输出摘要、GitHub annotation 与 SARIF JSON |
+| `moon doc` | 通过 |
+| `moon package` | 生成 `Derk2006-sarifkit-0.1.2.zip` |
+
+支持的后端是 **wasm（默认，`preferred_target`）、wasm-gc、js**。三个后端都构建同一个库与示例，测试在三者上全部通过，代码不依赖文件系统、网络或平台特定 API，因此没有平台限制；验证在 Windows 11 上完成，CI 在 Ubuntu 上执行同一组命令。
+
+清单格式：仓库只保留新版 `moon.mod` / `moon.pkg`。旧版 `moon.mod.json`、`moon.pkg.json` 在 0.1.2 中移除——它们与新版并存会让 `moon` 每条命令都打印弃用警告，新版工具链也已只采用新格式。
+
+CI（`.github/workflows/ci.yml`）逐次执行上表中的检查、三个后端的构建与测试、示例运行、文档生成和打包，因此后续工具链变化会在提交时暴露，而不是等到下一次维护提醒。
 
 ## 核心能力
 
@@ -72,6 +119,7 @@ moon package
 
 ## 支持范围
 
+- 构建后端：wasm（默认）、wasm-gc、js，构建、测试与示例均通过
 - 单文件 SARIF 2.1.0 日志
 - 单 run 与多 run 构造、合并和筛选
 - tool.driver、rules、results、locations、artifacts、invocations、automationDetails

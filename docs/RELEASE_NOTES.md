@@ -1,5 +1,22 @@
 # 版本发布记录
 
+## 0.1.2
+
+发布日期：2026-11-11
+
+发布目标：
+
+- 发布 `Derk2006/sarifkit@0.1.2`，回应 MoonBit 开源大赛组委会的持续可用性检查。
+- 保持公开 API 与行为不变，只做工具链兼容性与工程记录维护。
+
+发布前检查：
+
+- `moon version --all` 记录为 `moon 0.1.20260904` / `moonc v0.10.12+1634b282e` / `moonrun 0.1.20260904`。
+- `moon check --deny-warn` 通过，零警告（旧版清单已移除）。
+- wasm、wasm-gc、js 三个后端的构建与测试均通过，19/19。
+- `moon run cmd/main`、`moon doc`、`moon package` 通过。
+- 在全新项目中 `moon add Derk2006/sarifkit@0.1.2` 后按 README 示例调用公开 API，可编译并输出预期结果。
+
 ## 0.1.1
 
 发布日期：2026-08-17
